@@ -19,17 +19,18 @@ public class QuizUpHelper {
 
   public void printAnswer(Question question) {
     if (inputValidatorService.isValidQuestionObj(question)) {
-      question.getAnswers().forEach(answer -> log.info("\n {}", answer.getAnswer()));
+      log.info("Answer(s) is/are :");
+      question.getAnswers().forEach(answer -> log.info("{}", answer.getAnswer()));
     } else {
       print(DEFAULT_ANSWER_KEY);
     }
   }
 
   public void print(final String logString) {
-    log.info("\n\n" + environment.getProperty(logString));
+    log.info(environment.getProperty(logString));
   }
 
   public void printError(final String logString) {
-    log.error("\n\n" + logString);
+    log.error(logString);
   }
 }

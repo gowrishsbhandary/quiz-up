@@ -51,7 +51,7 @@ class QuestionAnswerServiceImplTest {
   void Given_Existing_QuestionAnswer_Expect_PrintError() {
     when(inputValidatorService.isValidMaxCharSize(any())).thenReturn(true);
     Question question = buildQuestionEntity();
-    when(questionRepository.findByQuestionVal(QUESTION)).thenReturn(Optional.ofNullable(question));
+    when(questionRepository.findByQuestionVal(QUESTION)).thenReturn(Optional.of(question));
     questionAnswerService.addQuestionAnswer(QUESTION + "?" + ANSWER);
     verify(quizUpHelper, atLeast(1)).printError(any());
   }
@@ -82,7 +82,7 @@ class QuestionAnswerServiceImplTest {
   void Given_Question_CallGetAnswer_ReturnQuestion_Successfully() {
     when(inputValidatorService.isValidMaxCharSize(any())).thenReturn(true);
     Question question = buildQuestionEntity();
-    when(questionRepository.findByQuestionVal(QUESTION)).thenReturn(Optional.ofNullable(question));
+    when(questionRepository.findByQuestionVal(QUESTION)).thenReturn(Optional.of(question));
     questionAnswerService.getAnswer(QUESTION);
     verify(questionRepository, atLeast(1)).findByQuestionVal(any());
     verify(quizUpHelper, atLeast(1)).printAnswer(any());
@@ -94,9 +94,21 @@ class QuestionAnswerServiceImplTest {
     verify(quizUpHelper, atLeast(1)).printError(any());
   }
 
+  @Test
+  void Given_valid_Question_AnswerList_Call_Save_Successfully() {
+    questionAnswerService.saveQuestionAnswer(QUESTION, getAnswers("Fine"));
+    verify(questionRepository, atLeast(1)).save(any());
+    verify(quizUpHelper, atLeast(2)).print(any());
+  }
+
   private Question buildQuestionEntity() {
-    Set<Answer> answers = new HashSet<>();
-    answers.add(new Answer(ANSWER));
+    Set<Answer> answers = getAnswers(ANSWER);
     return new Question(1, QUESTION, answers);
+  }
+
+  private Set<Answer> getAnswers(String answer) {
+    Set<Answer> answers = new HashSet<>();
+    answers.add(new Answer(answer));
+    return answers;
   }
 }

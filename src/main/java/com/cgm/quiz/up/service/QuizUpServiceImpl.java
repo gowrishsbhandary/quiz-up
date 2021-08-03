@@ -52,6 +52,6 @@ public class QuizUpServiceImpl implements QuizUpService {
   }
 
   private void print(String logString) {
-    log.info("\n\n" + environment.getProperty(logString) + "\n");
+    log.info(environment.getProperty(logString));
   }
 }

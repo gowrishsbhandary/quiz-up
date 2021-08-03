@@ -47,6 +47,7 @@ public class QuestionAnswerServiceImpl implements QuestionAnswerService {
   @Override
   public void getAnswer(String questionVal) {
     try {
+      questionVal = questionVal.replace("?", "");
       if (inputValidatorService.isValidMaxCharSize(questionVal)) {
         Question question = questionRepository.findByQuestionVal(questionVal).orElse(null);
         quizUpHelper.printAnswer(question);
@@ -66,7 +67,7 @@ public class QuestionAnswerServiceImpl implements QuestionAnswerService {
       if (inputValidatorService.isValidMaxCharSize(matcher.group(1))) {
         answersList.add(new Answer(matcher.group(1)));
       } else {
-        quizUpHelper.printError("Answer should be within 255 character limit!");
+        quizUpHelper.printError("Answer should be within 1-255 character limit!");
       }
     }
     saveQuestionAnswer(questionVal, answersList);
