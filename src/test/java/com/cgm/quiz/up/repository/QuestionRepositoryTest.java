@@ -16,8 +16,6 @@ import java.util.Set;
 class QuestionRepositoryTest {
 
   private final String QUESTION = "How are you";
-  private final String ANSWER1 = "Fine";
-  private final String ANSWER2 = "Not Fine";
 
   @Autowired private QuestionRepository questionRepository;
   @Autowired private TestEntityManager entityManager;
@@ -32,15 +30,15 @@ class QuestionRepositoryTest {
   void getAnswerForQuestionTest() {
     Question questionEntity = buildQuestionEntity();
     questionRepository.save(questionEntity);
-    Optional<Question> question = questionRepository.findByQuestionVal("How are you");
+    Optional<Question> question = questionRepository.findByQuestionVal(QUESTION);
     Assertions.assertThat(question).isPresent();
     Assertions.assertThat(question.get().getAnswers().size()).isEqualTo(2);
   }
 
   private Question buildQuestionEntity() {
     Set<Answer> answers = new HashSet<>();
-    answers.add(new Answer(ANSWER1));
-    answers.add(new Answer(ANSWER2));
+    answers.add(new Answer("Fine"));
+    answers.add(new Answer("Not Fine"));
     return new Question(1, QUESTION, answers);
   }
 }
