@@ -8,12 +8,14 @@ This command-line program lets users browse answers for questions present in the
 also, users can input new questions along with answers.
 
 A few constrains user has to follow is:
-1. Questions entered must exactly match the questions in the system.
-2. May or may not enter '?' after the question.
-3. While inputting the new questions and answers, the question should end with '?' and the answer should be inside "".
-4. Question or answer must limit to 255 char to input successfully
-5. Can not input the only question, there must be one or more answers to the question to input succesfully.
+* Questions entered must exactly match the questions in the system.
+* May or may not enter '?' after the question.
+* While inputting the new questions and answers, the question should end with '?' and the answer should be inside "".
+* Question or answer must limit to 255 char to input successfully
+* Can not input the only question, there must be one or more answers to the question to input succesfully.
 
+#
+#
 
 
 
