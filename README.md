@@ -13,14 +13,15 @@ A few constrains user has to follow is:
     * Enter 'B' : to ask a question.
     * Enter 'C' : to exit the program.
     * Wrong Option : Get error message and try again.
-* Ask a question:
-    * Question entered must exactly match the questions in the system.
-    * Question entered may or may not have '?' after the question.
-    * If question entered not found in the system expect a response "The answer to life, universe and everything is 42"
 * Input question and answer:
     * While inputting the new questions and answers, the question should end with '?' and the answer should be inside "".
     * Question or answer must limit to 255 char to input successfully
     * Can not input the only question, there must be one or more answers to the question to input succesfully.
+* Ask a question:
+    * Question entered must exactly match the questions in the system.
+    * Question entered may or may not have '?' after the question.
+    * If question entered not found in the system expect a response "The answer to life, universe and everything is 42"
+
 
 #
 #
